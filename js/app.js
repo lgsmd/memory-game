@@ -38,18 +38,18 @@ resetCar.addEventListener("click", function() { //触发重置
 });
 
 document.querySelector('.deck').addEventListener('click', function (event) {
-    if(matchArray.length === 0){
-        if(event.target.className === "card") {
+    if(event.target.className === "card") {
+        if(matchArray.length === 0) {
             event.target.className = "card open show";
             matchArray[0] = event.target.firstElementChild.className;
+        }else if(matchArray[0] === event.target.firstElementChild.className){
+            event.target.className = "card match";
+            document.querySelector(".card.open.show").className = "card match";
+            matchArray = [];
+        }else{
+            event.target.className = "card";
+            document.querySelector(".card.open.show").className = "card";
+            matchArray = [];
         }
-    }else if(matchArray[0] === event.target.firstElementChild.className){
-        event.target.className = "card match";
-        document.querySelector(".card.open.show").className = "card match";
-        matchArray = [];
-    }else{
-        event.target.className = "card";
-        document.querySelector(".card.open.show").className = "card";
-        matchArray = [];
     }
 });
