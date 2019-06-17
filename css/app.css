@@ -64,11 +64,16 @@ body {
 }
 
 .deck .card.show {
+
     font-size: 33px;
 }
 
 .deck .card.open {
-    transform: rotateY(0);
+    transform-style:preserve-3d;
+    transform: rotateY(-90deg);
+    backface-visibility: hidden;
+    transition:transform 0.8s;
+    /*transform: rotateY(0);*/
     background: #02b3e4;
     cursor: default;
 }
