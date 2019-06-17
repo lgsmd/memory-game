@@ -2,6 +2,7 @@ const carArray = ["fa fa-diamond", "fa fa-paper-plane-o", "fa fa-anchor", "fa fa
 const DocFrag = document.createDocumentFragment();
 let platformElement = document.querySelector('.deck');
 const resetCar = document.querySelector('.restart');
+let matchArray = [];
 
 function shuffle(array) {    //洗牌函数
     var currentIndex = array.length, temporaryValue, randomIndex;
@@ -37,7 +38,18 @@ resetCar.addEventListener("click", function() { //触发重置
 });
 
 document.querySelector('.deck').addEventListener('click', function (event) {
-   if(event.target.className === "card") {
-       event.target.className = "card open show";
-   }
-})
+    if(matchArray.length === 0){
+        if(event.target.className === "card") {
+            event.target.className = "card open show";
+            matchArray[0] = event.target.firstElementChild.className;
+        }
+    }else if(matchArray[0] === event.target.firstElementChild.className){
+        event.target.className = "card match";
+        document.querySelector(".card.open.show").className = "card match";
+        matchArray = [];
+    }else{
+        event.target.className = "card";
+        document.querySelector(".card.open.show").className = "card";
+        matchArray = [];
+    }
+});
