@@ -37,5 +37,7 @@ resetCar.addEventListener("click", function() { //触发重置
 });
 
 document.querySelector('.deck').addEventListener('click', function (event) {
-    event.target.className = "card open show";
+   if(event.target.className === "card") {
+       event.target.className = "card open show";
+   }
 })
