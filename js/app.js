@@ -43,13 +43,19 @@ document.querySelector('.deck').addEventListener('click', function (event) {
             event.target.className = "card open show";
             matchArray[0] = event.target.firstElementChild.className;
         }else if(matchArray[0] === event.target.firstElementChild.className){
-            event.target.className = "card match";
-            document.querySelector(".card.open.show").className = "card match";
-            matchArray = [];
+            event.target.className = "card open show";
+            setTimeout(function () {
+                event.target.className = "card match";
+                document.querySelector(".card.open.show").className = "card match";
+                matchArray = [];
+            }, 500);
         }else{
-            event.target.className = "card";
-            document.querySelector(".card.open.show").className = "card";
-            matchArray = [];
+            event.target.className = "card open show";
+            setTimeout(function () {
+                event.target.className = "card";
+                document.querySelector(".card.open.show").className = "card";
+                matchArray = [];
+            }, 500);
         }
     }
 });
