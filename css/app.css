@@ -70,12 +70,17 @@ body {
 
 .deck .card.open {
     transform-style:preserve-3d;
-    transform: rotateY(-90deg);
+    transform: rotateY(360deg);
     backface-visibility: hidden;
-    transition:transform 0.8s;
-    /*transform: rotateY(0);*/
+    transition:transform 0.3s;
     background: #02b3e4;
     cursor: default;
+}
+
+.deck .card.notRight{
+    cursor: default;
+    background: #cc1953;
+    font-size: 33px;
 }
 
 .score-panel {
