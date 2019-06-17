@@ -3,6 +3,7 @@ const DocFrag = document.createDocumentFragment();
 let platformElement = document.querySelector('.deck');
 const resetCar = document.querySelector('.restart');
 let matchArray = [];
+makePlatform(shuffle(carArray));
 
 function shuffle(array) {    //洗牌函数
     var currentIndex = array.length, temporaryValue, randomIndex;
