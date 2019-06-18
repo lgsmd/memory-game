@@ -1,7 +1,8 @@
 const carArray = ["fa fa-diamond", "fa fa-paper-plane-o", "fa fa-anchor", "fa fa-bolt", "fa fa-cube", "fa fa-leaf", "fa fa-bicycle", "fa fa-bomb", "fa fa-diamond", "fa fa-paper-plane-o", "fa fa-anchor", "fa fa-bolt", "fa fa-cube", "fa fa-leaf", "fa fa-bicycle", "fa fa-bomb"];
 const DocFrag = document.createDocumentFragment();
-let platformElement = document.querySelector('.deck');
+const platformElement = document.querySelector('.deck');
 const resetCar = document.querySelector('.restart');
+const starsMode = document.querySelectorAll(".fa.fa-star");
 let matchArray = [];
 let moves = 0;
 
@@ -20,8 +21,15 @@ function shuffle(array) {    //洗牌函数
 
     return array;
 }
-function movesTiming(timing){
+function movesTiming(timing){        //计星，计次
     document.querySelector(".moves").textContent = timing;
+    if(timing === 15){
+        starsMode[2].className = "fa fa-star-o";
+    }else if(timing === 18){
+        starsMode[1].className = "fa fa-star-o";
+    }else if(timing === 0){
+        starsMode[1].className = starsMode[2].className = starsMode[0].className;
+    }
 }
 
 function makePlatform(carArray) {  //生成游戏表格
