@@ -15,7 +15,6 @@ function shuffle(array) {    //洗牌函数
         array[currentIndex] = array[randomIndex];
         array[randomIndex] = temporaryValue;
     }
-
     return array;
 }
 
@@ -38,14 +37,15 @@ resetCar.addEventListener("click", function() { //触发重置
     makePlatform(shuffle(carArray));
 });
 
-function checkCards(className1, className2){
+function checkCards(className1, className2){   //对比卡片
     let openCard = document.querySelectorAll(".card.open.show");
     if(className1 === className2){
+        openCard[0].className = "card match";
+        openCard[1].className = "card match";
         setTimeout(function () {
-            openCard[0].className = "card match";
-            openCard[1].className = "card match";
+
             matchArray = [];
-        }, 400);
+        }, 550);
     }else {
         openCard[0].className = "card notRight";
         openCard[1].className = "card notRight";
@@ -53,11 +53,11 @@ function checkCards(className1, className2){
             openCard[0].className = "card";
             openCard[1].className = "card";
             matchArray = [];
-        }, 400);
+        }, 550);
     }
 }
 
-document.querySelector('.deck').addEventListener('click', function (event) {
+document.querySelector('.deck').addEventListener('click', function (event) { //点击卡片
     if(event.target.className === "card") {
         if(matchArray.length === 0) {
             event.target.className = "card open show";
