@@ -41,11 +41,11 @@ resetCar.addEventListener("click", function() { //触发重置
 function checkCards(className1, className2){
     let openCard = document.querySelectorAll(".card.open.show");
     if(className1 === className2){
+        openCard[0].className = "card match";
+        openCard[1].className = "card match";
         setTimeout(function () {
-            openCard[0].className = "card match";
-            openCard[1].className = "card match";
             matchArray = [];
-        }, 400);
+        }, 600);
     }else {
         openCard[0].className = "card notRight";
         openCard[1].className = "card notRight";
@@ -53,7 +53,7 @@ function checkCards(className1, className2){
             openCard[0].className = "card";
             openCard[1].className = "card";
             matchArray = [];
-        }, 400);
+        }, 600);
     }
 }
 
