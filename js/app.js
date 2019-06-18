@@ -1,7 +1,9 @@
 const carArray = ["fa fa-diamond", "fa fa-paper-plane-o", "fa fa-anchor", "fa fa-bolt", "fa fa-cube", "fa fa-leaf", "fa fa-bicycle", "fa fa-bomb", "fa fa-diamond", "fa fa-paper-plane-o", "fa fa-anchor", "fa fa-bolt", "fa fa-cube", "fa fa-leaf", "fa fa-bicycle", "fa fa-bomb"];
 const DocFrag = document.createDocumentFragment();
 const platformElement = document.querySelector('.deck');
+const starsMode = document.querySelectorAll(".fa.fa-star");
 let matchArray = [];
+let moves = 0;
 
 makePlatform(shuffle(carArray));
 
@@ -16,6 +18,16 @@ function shuffle(array) {    //洗牌函数
         array[randomIndex] = temporaryValue;
     }
     return array;
+}
+function movesTiming(timing){        //计星，计次
+    document.querySelector(".moves").textContent = timing;
+    if(timing === 15){
+        starsMode[2].className = "fa fa-star-o";
+    }else if(timing === 18){
+        starsMode[1].className = "fa fa-star-o";
+    }else if(timing === 0){
+        starsMode[1].className = starsMode[2].className = starsMode[0].className;
+    }
 }
 
 function makePlatform(carArray) {  //生成游戏表格
@@ -39,6 +51,7 @@ function checkCards(className1, className2){   //对比卡片
 
             matchArray = [];
         }, 550);
+        moves += 1;
     }else {
         openCard[0].className = "card notRight";
         openCard[1].className = "card notRight";
@@ -47,13 +60,17 @@ function checkCards(className1, className2){   //对比卡片
             openCard[1].className = "card";
             matchArray = [];
         }, 550);
+        moves += 1;
     }
+    movesTiming(moves);
 }
 
 document.querySelector('.restart').addEventListener("click", function() { //触发重置
     while (platformElement.firstChild != null){
         platformElement.firstChild.remove();
     }
+    moves = 0;
+    movesTiming(moves);
     makePlatform(shuffle(carArray));
 });
 
