@@ -1,8 +1,8 @@
 const carArray = ["fa fa-diamond", "fa fa-paper-plane-o", "fa fa-anchor", "fa fa-bolt", "fa fa-cube", "fa fa-leaf", "fa fa-bicycle", "fa fa-bomb", "fa fa-diamond", "fa fa-paper-plane-o", "fa fa-anchor", "fa fa-bolt", "fa fa-cube", "fa fa-leaf", "fa fa-bicycle", "fa fa-bomb"];
 const DocFrag = document.createDocumentFragment();
-let platformElement = document.querySelector('.deck');
-const resetCar = document.querySelector('.restart');
+const platformElement = document.querySelector('.deck');
 let matchArray = [];
+
 makePlatform(shuffle(carArray));
 
 function shuffle(array) {    //洗牌函数
@@ -30,13 +30,6 @@ function makePlatform(carArray) {  //生成游戏表格
     platformElement.appendChild(DocFrag);
 }
 
-resetCar.addEventListener("click", function() { //触发重置
-    while (platformElement.firstChild != null){
-        platformElement.firstChild.remove();
-    }
-    makePlatform(shuffle(carArray));
-});
-
 function checkCards(className1, className2){   //对比卡片
     let openCard = document.querySelectorAll(".card.open.show");
     if(className1 === className2){
@@ -56,6 +49,13 @@ function checkCards(className1, className2){   //对比卡片
         }, 550);
     }
 }
+
+document.querySelector('.restart').addEventListener("click", function() { //触发重置
+    while (platformElement.firstChild != null){
+        platformElement.firstChild.remove();
+    }
+    makePlatform(shuffle(carArray));
+});
 
 document.querySelector('.deck').addEventListener('click', function (event) { //点击卡片
     if(event.target.className === "card") {
