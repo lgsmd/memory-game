@@ -12,6 +12,9 @@ const playAgain = document.getElementById('playAgain');
 let matchCars = [];
 let moves = 0;
 let passTiming = 0;
+let startTime;
+let endTime;
+let totalTime;
 
 makePlatform(shuffle(carArray));
 
@@ -55,13 +58,16 @@ function checkCards(className1, className2){   //对比卡片
     if(className1 === className2){
         openCard[0].className = "card match";
         openCard[1].className = "card match";
-        setTimeout(function () {
-            passTiming++;
-            if(passTiming === 8){          //正确匹配8次，通关游戏，进入'恭喜'界面
+        passTiming++;
+        if(passTiming === 8){     //正确匹配8次，通关游戏，进入'恭喜'界面，结束计时
+            endTime = new Date().valueOf();     // 结束计时
+            totalTime = (endTime - startTime) / 1000;
+            setTimeout(function () {
                 passGame(passTiming);
-            }
-            matchCars = [];
-        }, 550);
+            }, 350);
+        }
+        matchCars = [];
+
     }else {
         openCard[0].className = "card notRight";
         openCard[1].className = "card notRight";
@@ -92,14 +98,18 @@ function againPlay() {   // 点击 pley again ，回到初始状态
 
 function passGame(){    //通关游戏
     divContainer.style.cssText = "visibility: hidden; height: 0px";  // 隐藏游戏界面
-    scoreString.textContent = `With ${moves} Moves and ${document.querySelectorAll('.fa.fa-star').length} Stars.`;  // '恭喜'界面成绩文本
+    scoreString.textContent = `With ${moves} Moves and ${document.querySelectorAll('.fa.fa-star').length} Stars. Times: ${totalTime}s!`;  // '恭喜'界面成绩文本
     passPlatfrom.style.cssText = "visibility: visible; height: 100%"; // 显示通过恭喜界面
+
     playAgain.addEventListener('click', againPlay);
 }
 
 resetButton.addEventListener('click', resetClick);   //  点击触发重置
 
 eventCard.addEventListener('click', function (event) { //点击卡片
+    if(moves === 0) {
+        startTime = new Date().valueOf();           //  开始计时
+    }
     if(event.target.className === "card") {
         if(matchCars.length === 0) {
             event.target.className = "card open show";
