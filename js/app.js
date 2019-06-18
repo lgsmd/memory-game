@@ -38,25 +38,34 @@ resetCar.addEventListener("click", function() { //触发重置
     makePlatform(shuffle(carArray));
 });
 
+function checkCards(className1, className2){
+    let openCard = document.querySelectorAll(".card.open.show");
+    if(className1 === className2){
+        setTimeout(function () {
+            openCard[0].className = "card match";
+            openCard[1].className = "card match";
+            matchArray = [];
+        }, 400);
+    }else {
+        openCard[0].className = "card notRight";
+        openCard[1].className = "card notRight";
+        setTimeout(function () {
+            openCard[0].className = "card";
+            openCard[1].className = "card";
+            matchArray = [];
+        }, 400);
+    }
+}
+
 document.querySelector('.deck').addEventListener('click', function (event) {
     if(event.target.className === "card") {
         if(matchArray.length === 0) {
             event.target.className = "card open show";
             matchArray[0] = event.target.firstElementChild.className;
-        }else if(matchArray[0] === event.target.firstElementChild.className){
-            event.target.className = "card match";
-            document.querySelector(".card.open.show").className = "card match";
-            setTimeout(function () {
-                matchArray = [];
-            }, 500);
-        }else{
-            event.target.className = "card notRight";
-            document.querySelector(".card.open.show").className = "card notRight";
-            setTimeout(function () {
-                event.target.className = "card";
-                document.querySelector(".card.notRight").className = "card";
-                matchArray = [];
-            }, 500);
+        }else if(matchArray.length === 1){
+            event.target.className = "card open show";
+            matchArray[1] = event.target.firstElementChild.className;
+            checkCards(matchArray[0],matchArray[1]);
         }
     }
 });
