@@ -3,6 +3,8 @@ const DocFrag = document.createDocumentFragment();
 let platformElement = document.querySelector('.deck');
 const resetCar = document.querySelector('.restart');
 let matchArray = [];
+let moves = 0;
+
 makePlatform(shuffle(carArray));
 
 function shuffle(array) {    //洗牌函数
@@ -17,6 +19,9 @@ function shuffle(array) {    //洗牌函数
     }
 
     return array;
+}
+function movesTiming(timing){
+    document.querySelector(".moves").textContent = timing;
 }
 
 function makePlatform(carArray) {  //生成游戏表格
@@ -35,7 +40,9 @@ resetCar.addEventListener("click", function() { //触发重置
     while (platformElement.firstChild != null){
         platformElement.firstChild.remove();
     }
+    moves = 0;
     makePlatform(shuffle(carArray));
+    movesTiming(0);
 });
 
 function checkCards(className1, className2){
@@ -45,7 +52,8 @@ function checkCards(className1, className2){
         openCard[1].className = "card match";
         setTimeout(function () {
             matchArray = [];
-        }, 600);
+        }, 500);
+        moves += 1;
     }else {
         openCard[0].className = "card notRight";
         openCard[1].className = "card notRight";
@@ -53,8 +61,10 @@ function checkCards(className1, className2){
             openCard[0].className = "card";
             openCard[1].className = "card";
             matchArray = [];
-        }, 600);
+        }, 500);
+        moves += 1;
     }
+    movesTiming(moves);
 }
 
 document.querySelector('.deck').addEventListener('click', function (event) {
