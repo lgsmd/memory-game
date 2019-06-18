@@ -1,15 +1,15 @@
 const carArray = ["fa fa-diamond", "fa fa-paper-plane-o", "fa fa-anchor", "fa fa-bolt", "fa fa-cube", "fa fa-leaf", "fa fa-bicycle", "fa fa-bomb", "fa fa-diamond", "fa fa-paper-plane-o", "fa fa-anchor", "fa fa-bolt", "fa fa-cube", "fa fa-leaf", "fa fa-bicycle", "fa fa-bomb"];
 const DocFrag = document.createDocumentFragment();
 const gamePlatfrom = document.querySelector('.deck');
-const starsMode = document.querySelectorAll(".fa.fa-star");
+const starsMode = document.querySelectorAll('.fa.fa-star');
 const resetButton = document.querySelector('.restart');
 const eventCard = document.querySelector('.deck');
-const divContainer = document.querySelector(".container");
-const scoreString = document.getElementById("scoreString");
-const passPlatfrom = document.querySelector(".passPlatfrom");
-const playAgain = document.getElementById("playAgain");
+const divContainer = document.querySelector('.container');
+const scoreString = document.getElementById('scoreString');
+const passPlatfrom = document.querySelector('.passPlatfrom');
+const playAgain = document.getElementById('playAgain');
 
-let matchArray = [];
+let matchCars = [];
 let moves = 0;
 let passTiming = 0;
 
@@ -51,16 +51,16 @@ function makePlatform(carArray) {  //生成游戏表格
 }
 
 function checkCards(className1, className2){   //对比卡片
-    let openCard = document.querySelectorAll(".card.open.show");
+    let openCard = document.querySelectorAll('.card.open.show');
     if(className1 === className2){
         openCard[0].className = "card match";
         openCard[1].className = "card match";
         setTimeout(function () {
             passTiming++;
-            if(passTiming === 8){     //正确匹配8次，通关游戏
+            if(passTiming === 8){          //正确匹配8次，通关游戏，进入'恭喜'界面
                 passGame(passTiming);
             }
-            matchArray = [];
+            matchCars = [];
         }, 550);
     }else {
         openCard[0].className = "card notRight";
@@ -68,13 +68,13 @@ function checkCards(className1, className2){   //对比卡片
         setTimeout(function () {
             openCard[0].className = "card";
             openCard[1].className = "card";
-            matchArray = [];
+            matchCars = [];
         }, 550);
     }
     movesTiming(moves);
 }
 
-function resetClick(){  // 重置游戏
+function resetClick(){       // 重置游戏
     while (gamePlatfrom.firstChild != null){
         gamePlatfrom.firstChild.remove();
     }
@@ -83,7 +83,7 @@ function resetClick(){  // 重置游戏
     makePlatform(shuffle(carArray));
 }
 
-function againPlay() {
+function againPlay() {   // 点击 pley again ，回到初始状态
     resetClick();
     passTiming = 0;
     passPlatfrom.style.cssText = "visibility: hidden; height: 0px";
@@ -92,23 +92,23 @@ function againPlay() {
 
 function passGame(){    //通关游戏
     divContainer.style.cssText = "visibility: hidden; height: 0px";  // 隐藏游戏界面
-    scoreString.textContent = `With ${moves} Moves and ${document.querySelectorAll(".fa.fa-star").length} Stars.`;
+    scoreString.textContent = `With ${moves} Moves and ${document.querySelectorAll('.fa.fa-star').length} Stars.`;  // '恭喜'界面成绩文本
     passPlatfrom.style.cssText = "visibility: visible; height: 100%"; // 显示通过恭喜界面
     playAgain.addEventListener('click', againPlay);
 }
 
-resetButton.addEventListener('click', resetClick); //触发重置
+resetButton.addEventListener('click', resetClick);   //  点击触发重置
 
 eventCard.addEventListener('click', function (event) { //点击卡片
     if(event.target.className === "card") {
-        if(matchArray.length === 0) {
+        if(matchCars.length === 0) {
             event.target.className = "card open show";
-            matchArray[0] = event.target.firstElementChild.className;
-        }else if(matchArray.length === 1){
+            matchCars[0] = event.target.firstElementChild.className;
+        }else if(matchCars.length === 1){
             moves += 1;
             event.target.className = "card open show";
-            matchArray[1] = event.target.firstElementChild.className;
-            checkCards(matchArray[0],matchArray[1]);
+            matchCars[1] = event.target.firstElementChild.className;
+            checkCards(matchCars[0],matchCars[1]);
         }
     }
 });
