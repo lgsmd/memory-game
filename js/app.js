@@ -85,6 +85,7 @@ function resetClick(){       // 重置游戏
         gamePlatfrom.firstChild.remove();
     }
     moves = 0;
+    startTime = 0;
     movesTiming(moves);
     makePlatform(shuffle(carArray));
 }
@@ -110,7 +111,7 @@ eventCard.addEventListener('click', function (event) { //点击卡片
     if(startTime === 0) {
         startTime = new Date().valueOf();           //  开始计时
     }
-    if(event.target.className === "card") {
+    if(event.target.className === "card") {            //点击到卡片
         if(matchCars.length === 0) {
             event.target.className = "card open show";
             matchCars[0] = event.target.firstElementChild.className;
@@ -118,6 +119,17 @@ eventCard.addEventListener('click', function (event) { //点击卡片
             moves += 1;
             event.target.className = "card open show";
             matchCars[1] = event.target.firstElementChild.className;
+            checkCards(matchCars[0],matchCars[1]);
+        }
+    }
+    if(event.target.parentElement.className === "card") {   //点击到卡片内容
+        if(matchCars.length === 0) {
+            event.target.parentElement.className = "card open show";
+            matchCars[0] = event.target.className;
+        }else if(matchCars.length === 1){
+            moves += 1;
+            event.target.parentElement.className = "card open show";
+            matchCars[1] = event.target.className;
             checkCards(matchCars[0],matchCars[1]);
         }
     }
