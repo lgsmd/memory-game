@@ -99,7 +99,7 @@ function againPlay() {   // 点击 pley again ，回到初始状态
 function passGame(){    //通关游戏
     divContainer.style.cssText = "visibility: hidden; height: 0px";  // 隐藏游戏界面
     scoreString.textContent = `With ${moves} Moves and ${document.querySelectorAll('.fa.fa-star').length} Stars. Times: ${totalTime}s!`;  // '恭喜'界面成绩文本
-    passPlatfrom.style.cssText = "visibility: visible; height: 100%"; // 显示通过恭喜界面
+    passPlatfrom.style.cssText = "visibility: visible;"; // 显示通过恭喜界面
 
     playAgain.addEventListener('click', againPlay);
 }

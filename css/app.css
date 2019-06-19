@@ -34,7 +34,7 @@ p{
 
 .deck {
     width: 660px;
-    min-height: 680px;
+    height: 680px;
     background: linear-gradient(160deg, #02ccba 0%, #aa7ecd 100%);
     padding: 32px;
     border-radius: 10px;
@@ -51,9 +51,9 @@ p{
     height: 125px;
     background: #2e3d49;
     border-radius: 8px;
-    color: #ffffff;
+    color: rgba(255, 242, 239, 0);
     cursor: pointer;
-    font-size: 0;
+    font-size: 33px;
     display: flex;
     justify-content: center;   /* 纵向居中 */
     align-items: center;       /* 横向居中 */
@@ -64,12 +64,11 @@ p{
 .deck .card.match {
     cursor: default;
     background: #02ccba;
-    font-size: 33px;
+    color: #ffffff;
 }
 
 .deck .card.show {
-
-    font-size: 33px;
+    color: #ffffff;
 }
 
 .deck .card.open {
@@ -84,7 +83,7 @@ p{
 .deck .card.notRight{
     cursor: default;
     background: #cc1953;
-    font-size: 33px;
+    color: #ffffff;
 }
 
 .score-panel {
@@ -112,9 +111,8 @@ p{
 
 .passPlatfrom {
     visibility: hidden;
-    background: #ffffff;
     width: 100%;
-    height: 0px;
+    height: 60%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -139,3 +137,39 @@ p{
     background: rgb(3, 201, 162);
 }
 
+@media screen and (max-width: 650px) {
+    h1 {
+        font-size: 2.5em;
+    }
+
+    .container {
+        padding-top: 15%;
+    }
+
+    .deck {
+        position:relative;
+        width: 100%;
+        height: 0;
+        margin: 1em 0 0 0;
+        padding: 6% 3% 100% 3%;
+    }
+
+    .deck .card {
+        width: 22%;
+        height: auto;
+        margin: 0 0 6% 0;
+    }
+
+    .score-panel {
+        text-align: left;
+        width: 80%;
+        margin-bottom: 0;
+        font-size: 1.3em;
+    }
+
+    .fa {
+        padding-top: 28%;
+        padding-bottom: 28%;
+    }
+
+}
