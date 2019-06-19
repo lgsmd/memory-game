@@ -12,7 +12,7 @@ const playAgain = document.getElementById('playAgain');
 let matchCars = [];
 let moves = 0;
 let passTiming = 0;
-let startTime;
+let startTime = 0;
 let endTime;
 let totalTime;
 
@@ -107,7 +107,7 @@ function passGame(){    //通关游戏
 resetButton.addEventListener('click', resetClick);   //  点击触发重置
 
 eventCard.addEventListener('click', function (event) { //点击卡片
-    if(moves === 0) {
+    if(startTime === 0) {
         startTime = new Date().valueOf();           //  开始计时
     }
     if(event.target.className === "card") {

@@ -143,7 +143,7 @@ p{
     }
 
     .container {
-        padding-top: 15%;
+        padding-top: 5%;
     }
 
     .deck {
@@ -151,7 +151,7 @@ p{
         width: 100%;
         height: 0;
         margin: 1em 0 0 0;
-        padding: 6% 3% 100% 3%;
+        padding: 6% 3% 105% 3%;
     }
 
     .deck .card {
@@ -168,8 +168,30 @@ p{
     }
 
     .fa {
-        padding-top: 28%;
-        padding-bottom: 28%;
+        padding-top: 35%;
+        padding-bottom: 35%;
     }
 
+}
+
+@media screen and (max-width: 550px){
+    .container {
+        padding-top: 15%;
+    }
+
+    .deck {
+        padding: 6% 3% 107% 3%;
+    }
+
+    .fa {
+        padding-top: 34%;
+        padding-bottom: 34%;
+    }
+}
+
+@media screen and (max-width: 450px){
+    .fa {
+        padding-top: 29%;
+        padding-bottom: 29%;
+    }
 }
