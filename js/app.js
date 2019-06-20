@@ -101,8 +101,25 @@ function passGame(){    //通关游戏
     divContainer.style.cssText = "visibility: hidden; height: 0px";  // 隐藏游戏界面
     scoreString.textContent = `With ${moves} Moves and ${document.querySelectorAll('.fa.fa-star').length} Stars. Times: ${totalTime}s!`;  // '恭喜'界面成绩文本
     passPlatfrom.style.cssText = "visibility: visible;"; // 显示通过恭喜界面
-
+    addGood();
     playAgain.addEventListener('click', againPlay);
+}
+
+function addGood(){        //添加通关游戏后的 "打钩" 动画
+    const goodHtml =
+        `<div class="swal2-icon swal2-success swal2-animate-success-icon" style="display: block;">
+            <div class="swal2-success-circular-line-left" style="background: rgb(255, 255, 255);">
+            </div>
+            <span class="swal2-success-line-tip swal2-animate-success-line-tip"></span><span class="swal2-success-line-long swal2-animate-success-line-long"></span>
+            <div class="swal2-success-ring">
+            </div>
+            <div class="swal2-success-fix" style="background: rgb(255, 255, 255);">
+            </div>
+            <div class="swal2-success-circular-line-right" style="background: rgb(255, 255, 255);">
+            </div> 
+         </div>`
+
+    document.getElementById('correct').innerHTML = goodHtml;
 }
 
 resetButton.addEventListener('click', resetClick);   //  点击触发重置
